@@ -200,15 +200,6 @@ function AnimatedHeroModel({
     }
   }, [actions, hoverActive, idleName, waveName]);
 
-  useFrame((_state, delta) => {
-    if (!groupRef.current) {
-      return;
-    }
-    if (!actions[waveName] || waveName === idleName) {
-      groupRef.current.rotation.y += delta * 0.5;
-    }
-  });
-
   return (
     <group
       ref={groupRef}
