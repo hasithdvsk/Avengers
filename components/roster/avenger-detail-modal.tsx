@@ -1,10 +1,10 @@
 "use client";
 
-import type { Avenger } from "@/constants/avengers";
+import type { Avenger, AvengerWeapon } from "@/constants/avengers";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 
 type AvengerDetailModalProps = {
   avenger: Avenger | null;
@@ -19,13 +19,94 @@ const TAB_ITEMS: { key: IntelTab; label: string }[] = [
   { key: "weapons", label: "Weapons" },
 ];
 
+function WeaponsTab({
+  weapons,
+  themeColor,
+}: {
+  weapons: AvengerWeapon[];
+  themeColor: string;
+}) {
+  const [activeWeapon, setActiveWeapon] = useState(weapons[0]?.name ?? "");
+
+  return (
+    <motion.div
+      className="border-2 border-black bg-white p-4"
+      initial="hidden"
+      animate="show"
+      exit="hidden"
+      variants={{
+        hidden: { opacity: 0 },
+        show: {
+          opacity: 1,
+          transition: {
+            delayChildren: 0.2,
+            staggerChildren: 0.09,
+          },
+        },
+      }}
+    >
+      <motion.div
+        className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3"
+        variants={{
+          hidden: { opacity: 0 },
+          show: { opacity: 1 },
+        }}
+      >
+        {weapons.map((weapon) => {
+          const isActive = activeWeapon === weapon.name;
+          return (
+            <motion.button
+              key={weapon.name}
+              type="button"
+              data-cursor="hover"
+              onClick={() => setActiveWeapon(weapon.name)}
+              className="group relative overflow-hidden border-2 border-black bg-white text-left"
+              variants={{
+                hidden: { y: 20, opacity: 0 },
+                show: { y: 0, opacity: 1 },
+              }}
+              whileHover={{
+                scale: 1.05,
+                y: -5,
+                boxShadow: `0 0 30px ${themeColor}`,
+              }}
+              transition={{ type: "spring", stiffness: 260, damping: 24 }}
+            >
+              <div className="relative h-28 w-full border-b-2 border-black bg-[linear-gradient(145deg,#f4f4f5_0%,#d4d4d8_52%,#f4f4f5_100%)]">
+                <Image
+                  src={weapon.image}
+                  alt={`${weapon.name} icon`}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-contain p-3 drop-shadow-[0_10px_10px_rgba(0,0,0,0.35)]"
+                />
+              </div>
+
+              <div className="relative p-3">
+                <p className="text-xs font-black tracking-[0.14em] uppercase text-zinc-700">{weapon.name}</p>
+                <p className="mt-2 text-xs font-semibold text-zinc-700">{weapon.iconicAppearance}</p>
+                <p className="mt-2 line-clamp-2 text-xs text-zinc-600 opacity-0 transition-opacity group-hover:opacity-100">
+                  {weapon.description}
+                </p>
+              </div>
+
+              {isActive ? (
+                <motion.span
+                  layoutId="weaponCardHighlight"
+                  className="absolute right-2 bottom-1 left-2 h-[3px] bg-black"
+                />
+              ) : null}
+            </motion.button>
+          );
+        })}
+      </motion.div>
+    </motion.div>
+  );
+}
+
 function IntelTabs({ avenger }: { avenger: Avenger }) {
   const [activeTab, setActiveTab] = useState<IntelTab>("origin");
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
-
-  useEffect(() => {
-    setActiveTab("origin");
-  }, [avenger.id]);
 
   const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     const lastIndex = TAB_ITEMS.length - 1;
@@ -142,15 +223,9 @@ function IntelTabs({ avenger }: { avenger: Avenger }) {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -20, opacity: 0 }}
               transition={{ duration: 0.24, ease: "easeOut" }}
-              className="border-2 border-black bg-white p-4"
+              className="p-0"
             >
-              <ul className="space-y-2 text-sm font-semibold text-zinc-800">
-                {avenger.weapons.map((weapon) => (
-                  <li key={weapon} className="border-l-4 border-black pl-3">
-                    {weapon}
-                  </li>
-                ))}
-              </ul>
+              <WeaponsTab weapons={avenger.weapons} themeColor={avenger.themeColor} />
             </motion.div>
           ) : null}
         </AnimatePresence>
@@ -232,7 +307,7 @@ export function AvengerDetailModal({ avenger, onClose }: AvengerDetailModalProps
                 </div>
               </div>
 
-              <IntelTabs avenger={avenger} />
+              <IntelTabs key={avenger.id} avenger={avenger} />
             </div>
           </motion.article>
         </motion.div>

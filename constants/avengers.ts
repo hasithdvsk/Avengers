@@ -1,3 +1,10 @@
+export type AvengerWeapon = {
+  name: string;
+  description: string;
+  image: string;
+  iconicAppearance: string;
+};
+
 export type Avenger = {
   id: string;
   alias: string;
@@ -10,7 +17,7 @@ export type Avenger = {
     year: number;
   };
   highlightMovie: string;
-  weapons: string[];
+  weapons: AvengerWeapon[];
   strengths: string[];
   themeColor: string;
 };
@@ -30,10 +37,27 @@ export const AVENGERS: Avenger[] = [
     },
     highlightMovie: "Avengers: Endgame",
     weapons: [
-      "Modular Iron Man Armors",
-      "Repulsor Cannons",
-      "Unibeam Arc Reactor Core",
-      "Nano-Tech Blade Systems",
+      {
+        name: "Repulsor Gauntlets",
+        description:
+          "Palm-mounted energy cannons calibrated for precision suppression or wide-angle blast dispersal.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f52b.png",
+        iconicAppearance: "Iron Man (2008) - Gulmira aerial strike",
+      },
+      {
+        name: "Arc Reactor Unibeam",
+        description:
+          "Chest-core discharge beam used for high-output finishing strikes when engagement thresholds spike.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u26a1.png",
+        iconicAppearance: "The Avengers (2012) - Leviathan takedown",
+      },
+      {
+        name: "Nano-Edge Blade",
+        description:
+          "Adaptive hard-light blade formed from Mark 85 nanotech for close-quarter penetration.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f5e1.png",
+        iconicAppearance: "Avengers: Endgame - final duel sequence",
+      },
     ],
     strengths: [
       "Genius-level intellect and systems design",
@@ -57,9 +81,27 @@ export const AVENGERS: Avenger[] = [
     },
     highlightMovie: "Captain America: The Winter Soldier",
     weapons: [
-      "Vibranium Shield",
-      "Tactical Combat Gear",
-      "Motorcycle and Field Arsenal",
+      {
+        name: "Vibranium Shield",
+        description:
+          "Impact-absorbing disk optimized for defense, ricochet offense, and squad positioning control.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f6e1.png",
+        iconicAppearance: "The Winter Soldier - elevator gauntlet",
+      },
+      {
+        name: "Tactical Combat Blade",
+        description:
+          "Secondary close-quarters blade used in constrained engagements against armored opponents.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f5e1.png",
+        iconicAppearance: "Civil War - airport confrontation",
+      },
+      {
+        name: "Field Utility Rig",
+        description:
+          "Mission-specific loadout harness for comms, breaching tools, and mobility support systems.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f9f0.png",
+        iconicAppearance: "The First Avenger - HYDRA assaults",
+      },
     ],
     strengths: [
       "Peak human strength, agility, and stamina",
@@ -83,9 +125,27 @@ export const AVENGERS: Avenger[] = [
     },
     highlightMovie: "Thor: Ragnarok",
     weapons: [
-      "Mjolnir",
-      "Stormbreaker",
-      "Asgardian Lightning Mastery",
+      {
+        name: "Mjolnir",
+        description:
+          "Uru hammer keyed to worthiness protocols, enabling kinetic return and storm-channel impact.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f528.png",
+        iconicAppearance: "Thor (2011) - worthiness return moment",
+      },
+      {
+        name: "Stormbreaker",
+        description:
+          "Bifrost-capable axe-hammer forged by Nidavellir to penetrate high-energy titan defenses.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1fa93.png",
+        iconicAppearance: "Infinity War - Wakanda arrival",
+      },
+      {
+        name: "God-Tier Lightning",
+        description:
+          "Direct atmospheric energy channeling for area denial, armor overload, and strike amplification.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u26a1.png",
+        iconicAppearance: "Ragnarok - bridge lightning surge",
+      },
     ],
     strengths: [
       "Divine durability and raw strength",
@@ -108,7 +168,29 @@ export const AVENGERS: Avenger[] = [
       year: 1962,
     },
     highlightMovie: "The Avengers",
-    weapons: ["Gamma-Enhanced Physiology", "Environmental Improvisation"],
+    weapons: [
+      {
+        name: "Gamma-Enhanced Physiology",
+        description:
+          "Primary combat instrument with exponential force scaling under escalating emotional load.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f4aa.png",
+        iconicAppearance: "The Avengers - Loki ragdoll strike",
+      },
+      {
+        name: "Improvised Impact Arsenal",
+        description:
+          "Environmental objects repurposed into high-mass melee weapons on sub-second reaction cycles.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f528.png",
+        iconicAppearance: "Age of Ultron - urban debris combat",
+      },
+      {
+        name: "Field Engineering Interface",
+        description:
+          "Banner-side technical systems for containment, diagnostics, and anti-catastrophic planning.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f9f0.png",
+        iconicAppearance: "Endgame - smart Hulk integration",
+      },
+    ],
     strengths: [
       "Exponential strength amplification",
       "Near-instant tissue regeneration",
@@ -131,9 +213,27 @@ export const AVENGERS: Avenger[] = [
     },
     highlightMovie: "Captain America: Civil War",
     weapons: [
-      "Widow's Bite Electroshock Gauntlets",
-      "Twin Batons",
-      "Covert Tactical Arsenal",
+      {
+        name: "Widow's Bite Gauntlets",
+        description:
+          "Electroshock capacitors tuned for disabling armor systems and close-range crowd control.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u26a1.png",
+        iconicAppearance: "The Avengers - helicarrier skirmish",
+      },
+      {
+        name: "Twin Tactical Batons",
+        description:
+          "Collapsible stun batons used for hybrid melee pressure and acrobatic velocity strikes.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f5e1.png",
+        iconicAppearance: "Black Widow (2021) - Red Room breach",
+      },
+      {
+        name: "Covert Sidearm Suite",
+        description:
+          "Concealed firearm package for precision extraction support in compromised environments.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f52b.png",
+        iconicAppearance: "Winter Soldier - SHIELD collapse",
+      },
     ],
     strengths: [
       "Elite espionage and infiltration",
@@ -157,9 +257,27 @@ export const AVENGERS: Avenger[] = [
     },
     highlightMovie: "Avengers: Age of Ultron",
     weapons: [
-      "Recurve Bow",
-      "Specialized Trick Arrows",
-      "Close-Quarters Tactical Blade",
+      {
+        name: "Compound Recurve Bow",
+        description:
+          "High-tension bow platform for precision engagement at long and medium-range vectors.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f3f9.png",
+        iconicAppearance: "The Avengers - New York skyline shots",
+      },
+      {
+        name: "Trick Arrow Arsenal",
+        description:
+          "Modular arrowheads including EMP, explosive, and grappling variants for adaptive combat.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f9f0.png",
+        iconicAppearance: "Age of Ultron - Quicksilver sequence",
+      },
+      {
+        name: "Ronin Blade",
+        description:
+          "Katana-grade sword optimized for silent takedowns during covert anti-cartel operations.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f5e1.png",
+        iconicAppearance: "Endgame - Tokyo underworld raid",
+      },
     ],
     strengths: [
       "Perfected archery accuracy",
@@ -183,9 +301,27 @@ export const AVENGERS: Avenger[] = [
     },
     highlightMovie: "Black Panther",
     weapons: [
-      "Vibranium Panther Habit",
-      "Retractable Vibranium Claws",
-      "Kimoyo Bead Tactical Systems",
+      {
+        name: "Vibranium Panther Habit",
+        description:
+          "Energy-absorption suit that redistributes kinetic force during high-speed melee exchanges.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f6e1.png",
+        iconicAppearance: "Black Panther - waterfall challenge",
+      },
+      {
+        name: "Retractable Vibranium Claws",
+        description:
+          "Precision claw system designed for armor slicing, climbing, and rapid close-quarters pressure.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f5e1.png",
+        iconicAppearance: "Civil War - tunnel pursuit",
+      },
+      {
+        name: "Kimoyo Bead Systems",
+        description:
+          "Multi-function Wakandan interface for remote medical, surveillance, and tactical networking.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f52e.png",
+        iconicAppearance: "Black Panther - remote vehicle control",
+      },
     ],
     strengths: [
       "Enhanced speed, strength, and agility",
@@ -209,9 +345,27 @@ export const AVENGERS: Avenger[] = [
     },
     highlightMovie: "Doctor Strange in the Multiverse of Madness",
     weapons: [
-      "Chaos Magic Manipulation",
-      "Telekinetic Force Constructs",
-      "Hex Field Reality Warping",
+      {
+        name: "Chaos Hex Bolts",
+        description:
+          "Crimson energy projectiles capable of destabilizing shields and bending localized reality.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u26a1.png",
+        iconicAppearance: "WandaVision - Hex perimeter expansion",
+      },
+      {
+        name: "Telekinetic Constructs",
+        description:
+          "High-density force structures used to immobilize targets and reshape combat lanes.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f52e.png",
+        iconicAppearance: "Infinity War - Wakanda battlefield hold",
+      },
+      {
+        name: "Reality Fracture Field",
+        description:
+          "Wide-area manipulation layer that alters material behavior and tactical certainty.",
+        image: "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/png/512/emoji_u1f9f0.png",
+        iconicAppearance: "Multiverse of Madness - Kamar-Taj siege",
+      },
     ],
     strengths: [
       "Extreme psionic and magical output",

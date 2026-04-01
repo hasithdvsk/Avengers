@@ -1,6 +1,7 @@
 "use client";
 
 import { Text3D, useGLTF } from "@react-three/drei";
+import type { FontData } from "@react-three/drei/core/useFont";
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import {
@@ -25,6 +26,8 @@ type AvengersLogoProps = {
   isHovered: boolean;
   modelPath: string;
 };
+
+const helvetikerBoldFont = helvetikerBold as unknown as FontData;
 
 function tintModel(root: Object3D) {
   root.traverse((child) => {
@@ -82,7 +85,7 @@ function AvengersTextFallback() {
   return (
     <group position={[0, -0.15, 0]}>
       <Text3D
-        font={helvetikerBold as any}
+        font={helvetikerBoldFont}
         size={1.62}
         height={0.34}
         bevelEnabled
@@ -97,7 +100,7 @@ function AvengersTextFallback() {
       </Text3D>
 
       <Text3D
-        font={helvetikerBold as any}
+        font={helvetikerBoldFont}
         size={1.62}
         height={0.34}
         bevelEnabled
