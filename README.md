@@ -15,6 +15,9 @@ A high-contrast, graphic-novel inspired Avengers showcase built with Next.js App
 ## Features
 
 - Cinematic hero with a rotating 3D centerpiece + scanline/vignette overlays
+- Dynamic MCU-style background system with delayed-load video + static fallback
+- Affiliation-based VFX stickers (Tech, Magic, God) with pulsing animation
+- Context-aware particle field with subtle cursor repel behavior
 - Responsive Avengers roster with bold outlined cards
 - Hover-driven glow and slide-up identity reveal
 - Shared-layout transition into an immersive lore modal
@@ -36,6 +39,15 @@ npm run build
 ```
 
 Open `http://localhost:3000`.
+
+## Optional background video asset
+
+The cinematic background looks for:
+
+- `public/videos/mcu-loop.webm`
+- `public/videos/mcu-loop.mp4`
+
+If absent, the app automatically uses `public/images/mcu-fallback.svg`.
 
 ## Key Files
 
