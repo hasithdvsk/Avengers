@@ -1,11 +1,12 @@
 "use client";
 
 import type { Avenger } from "@/constants/avengers";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { Shield, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ThreeDHero } from "@/components/hero/three-d-hero";
 
 type AvengerCardProps = {
   avenger: Avenger;
@@ -14,11 +15,15 @@ type AvengerCardProps = {
 };
 
 export function AvengerCard({ avenger, onSelect, priority = false }: AvengerCardProps) {
+  const cardRef = useRef<HTMLButtonElement | null>(null);
+  const isInView = useInView(cardRef, { once: true, amount: 0.25 });
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.button
+      ref={cardRef}
       type="button"
       data-cursor="hover"
       layoutId={`card-${avenger.id}`}
@@ -32,6 +37,8 @@ export function AvengerCard({ avenger, onSelect, priority = false }: AvengerCard
       whileTap={{ scale: 0.99 }}
       transition={{ type: "spring", stiffness: 260, damping: 24 }}
       onClick={() => onSelect(avenger)}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
       className="group relative flex min-h-[390px] w-full flex-col justify-between overflow-hidden border-4 border-black bg-white p-5 text-left"
       style={{
         boxShadow: "0 0 0 rgba(0,0,0,0)",
@@ -75,6 +82,15 @@ export function AvengerCard({ avenger, onSelect, priority = false }: AvengerCard
               />
             </motion.div>
           )}
+          {isInView ? (
+            <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <ThreeDHero
+                modelPath="/models/avengers-logo.glb"
+                isHovered={isHovered}
+                themeColor={avenger.themeColor}
+              />
+            </div>
+          ) : null}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent" />
           <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_90px_12px_rgba(0,0,0,0.85)]" />
         </div>
